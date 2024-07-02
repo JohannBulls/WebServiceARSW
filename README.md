@@ -6,6 +6,7 @@ This application retrieves historical stock market data for a given stock symbol
 
 - **Data Retrieval**: Fetches historical stock data based on user-specified intervals (intraday, daily, etc.).
 - **API Integration**: Utilizes Alpha Vantage API for data retrieval.
+- **Concurrency**: Supports concurrent data fetching using multiple threads.
 - **Simple Client**: A Java-based client application that makes HTTP GET requests to the backend.
 
 ## Project Structure
@@ -22,15 +23,22 @@ The backend server is built using Spring Boot and provides RESTful APIs for fetc
 2. **StockController.java**:
    - REST controller that handles incoming requests for fetching stock data based on different intervals.
 
+3. **WebServiceArswApplication.java**:
+   - The main class for bootstrapping the Spring Boot application.
+
 ### Client (Java)
 
 The Java client application interacts with the backend to fetch and display stock data.
 
-#### Main Class
+#### Main Classes
 
 1. **StockClient.java**:
    - A simple Java client that makes HTTP GET requests to the Spring Boot backend.
    - Retrieves stock data for predefined intervals and prints the response to the console.
+
+2. **StockClientTest.java**:
+   - A test class that executes the StockClient concurrently using multiple threads.
+   - Demonstrates how to fetch stock data in parallel to improve performance.
 
 ## Installation and Setup
 
@@ -51,7 +59,6 @@ The Java client application interacts with the backend to fetch and display stoc
 2. **Compile and Run the Backend**:
 
    ```bash
-   cd WebServiceARSW
    mvn clean package
    mvn spring-boot:run
    ```
@@ -59,7 +66,6 @@ The Java client application interacts with the backend to fetch and display stoc
 3. **Run the Client**:
 
    ```bash
-   cd StockMarketDataClient
    mvn clean package
    mvn exec:java -Dexec.mainClass="edu.escuelaing.arsw.ASE.app.WebServiceARSW.StockClient"
    ```
@@ -67,6 +73,15 @@ The Java client application interacts with the backend to fetch and display stoc
 4. **Access the Application**:
    - The client application will fetch data from the backend based on predefined intervals and display it in the console.
 
+### AWS Deployment
+
+You can access the application deployed on AWS at:
+http://ec2-54-158-119-56.compute-1.amazonaws.com:8080/
+
+![alt text](images/image.png)
+
+### Architectural Design
+![alt text](<images/Diagrama en blanco.png>)
 ## Technologies Used
 
 - **Backend**: Spring Boot, Java
